@@ -48,6 +48,7 @@ User.login = function (email, Id, result) {
             p.matchEthnicity,
             p.matchEducation,
             p.matchIsVaccinated,
+            p.userStatus,
             p.matchHaveChild
      FROM users as u left join profile as p on p.userId = u.id WHERE u.email = ? AND u.id = ?`,
     [email, Id],
@@ -101,7 +102,9 @@ User.create = function (userData, result) {
 
 User.findAndSearchAll = async (limit, offset, search, startDate, endDate) => {
   let whereCondition = `u.isAdmin = 'N' ${
-    search ? `AND p.userName LIKE '%${search}%' OR u.email LIKE '%${search}%'` : ""
+    search
+      ? `AND p.userName LIKE '%${search}%' OR u.email LIKE '%${search}%'`
+      : ""
   }`;
 
   if (startDate && endDate) {
