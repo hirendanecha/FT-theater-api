@@ -32,6 +32,7 @@ router.post("/get-emails", userController.getEmail);
 router.post("/set-password", userController.setPassword);
 router.post("/get-notification/:id", profileController.getNotificationById);
 router.get("/search-user", profileController.getUsersByUsername);
+router.put("/onOff-notification", profileController.editNotificationSound);
 router.get("/:id", userController.findById);
 router.put("/update-pictures/:id", profileController.updatePicture);
 router.put("/:id", userController.update);
